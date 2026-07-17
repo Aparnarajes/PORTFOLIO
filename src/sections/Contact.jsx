@@ -7,12 +7,14 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setLoading(true);
+    setError('');
     
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -22,7 +24,7 @@ const Contact = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY_HERE", // Replace with your key from web3forms.com
+          access_key: "f13de481-a566-47d0-bfa7-303673f74872",
           name: formData.name,
           email: formData.email,
           message: formData.message,
@@ -41,9 +43,11 @@ const Contact = () => {
         }, 5000);
       } else {
         console.error("Form submission failed:", result);
+        setError('Message could not be sent. Please try again or email directly.');
       }
-    } catch (error) {
-      console.error("Error submitting form:", error);
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      setError('Network error. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }
@@ -209,6 +213,16 @@ const Contact = () => {
                         </>
                       )}
                     </motion.button>
+
+                    {error && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-red-400 text-sm text-center mt-2 px-2"
+                      >
+                        ⚠️ {error}
+                      </motion.p>
+                    )}
                   </motion.form>
                 ) : (
                   <motion.div
