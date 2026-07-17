@@ -159,7 +159,7 @@ This project is licensed under the MIT License.
 
 <div align="center">
 
-### Made with ❤️ by Aparna Rajesh
+### by Aparna Rajesh
 
 **AI • Machine Learning • Data Science • Software Development**
 
