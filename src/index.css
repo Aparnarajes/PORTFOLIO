@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black-pure text-white font-['Plus_Jakarta_Sans',_sans-serif] selection:bg-accent-blue/30 selection:text-white overflow-x-hidden;
+    background: #080911;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Outfit',_sans-serif] font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl;
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  .glass-card-dark {
+    @apply backdrop-blur-2xl border border-white/5 rounded-2xl shadow-2xl;
+    background: rgba(8, 9, 17, 0.65);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+
+  .neon-text-blue {
+    color: #6366f1;
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
+  }
+
+  .neon-text-purple {
+    color: #a78bfa;
+    filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.6));
+  }
+
+  .neon-border {
+    @apply border border-accent-blue/20 hover:border-accent-blue/50 transition-all duration-300;
+    box-shadow: inset 0 0 15px rgba(59, 130, 246, 0.05);
+  }
+
+  .gradient-border-mask {
+    position: relative;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .gradient-border-mask::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+  }
+
+  .gradient-border-mask:hover::after {
+    opacity: 0.8;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black-pure;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+.gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+              radial-gradient(circle at 70% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 60%);
+}
+
+.mouse-glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.stripe-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+}
